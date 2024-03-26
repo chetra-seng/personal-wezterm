@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	-- Set default domain to wsl
 	config.default_domain = "WSL:Ubuntu"
-elseif wezterm.target_triple == "aarch64-apple-darwin" or wezterm.target_triple == "x86_64-apple-darwin" then
+elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	-- Set background blur if the OS is macOS
 	config.macos_window_background_blur = 20
 end
@@ -27,6 +27,7 @@ config.color_schemes = {
 config.color_scheme = "My Tokyo Night"
 
 -- Other customization
+config.font = wezterm.font("MesloLGS NF", { weight = "Regular" })
 config.font_size = 14.0
 config.window_padding = {
 	left = 10,
@@ -48,6 +49,21 @@ config.keys = {
 
 	-- paste from the primary selection
 	{ key = "v", mods = "CTRL", action = act.PasteFrom("PrimarySelection") },
+
+	-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+	{
+		key = "LeftArrow",
+		mods = wezterm.target_triple == "aarch64-apple-darwin" and "OPT" or "ALT",
+		action = wezterm.action({ SendString = "\x1bb" }),
+	},
+
+	-- Make Option-Right equivalent to Alt-f; forward-word
+	{
+		key = "RightArrow",
+		mods = wezterm.target_triple == "aarch64-apple-darwin" and "OPT" or "ALT",
+		action = wezterm.action({ SendString = "\x1bf" }),
+	},
+
 	{
 		key = "|",
 		mods = "LEADER",
