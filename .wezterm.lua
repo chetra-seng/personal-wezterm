@@ -44,23 +44,23 @@ config.keys = {}
 local act = wezterm.action
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
+	-- copy to clipboard
+	{ key = "c", mods = "CTRL|CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
 	-- paste from the clipboard
-	{ key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
+	{ key = "v", mods = "CTRL|CMD", action = act.PasteFrom("Clipboard") },
 
 	-- paste from the primary selection
-	{ key = "v", mods = "CTRL", action = act.PasteFrom("PrimarySelection") },
+	{ key = "v", mods = "CTRL|CMD", action = act.PasteFrom("PrimarySelection") },
 
-	-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+	-- Just make macOS behaves a bit like Linux
 	{
-		key = "LeftArrow",
-		mods = wezterm.target_triple == "aarch64-apple-darwin" and "OPT" or "ALT",
+		key = "b",
+		mods = "CMD",
 		action = wezterm.action({ SendString = "\x1bb" }),
 	},
-
-	-- Make Option-Right equivalent to Alt-f; forward-word
 	{
-		key = "RightArrow",
-		mods = wezterm.target_triple == "aarch64-apple-darwin" and "OPT" or "ALT",
+		key = "f",
+		mods = "CMD",
 		action = wezterm.action({ SendString = "\x1bf" }),
 	},
 
