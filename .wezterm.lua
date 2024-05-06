@@ -7,12 +7,12 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_domain = "WSL:Ubuntu"
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	-- Set background blur if the OS is macOS
-	config.macos_window_background_blur = 20
+	config.macos_window_background_blur = 10
 end
 
 -- Custom config
 config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = 0.6
+config.window_background_opacity = 0.65
 
 -- Get builtin color_scheme
 local tokyo_night = wezterm.color.get_builtin_schemes()["Tokyo Night"]
@@ -27,8 +27,12 @@ config.color_schemes = {
 config.color_scheme = "My Tokyo Night"
 
 -- Other customization
-config.font = wezterm.font("MesloLGS NF", { weight = "Regular" })
-config.font_size = 14.0
+config.font = wezterm.font({
+	family = "FiraCode Nerd Font",
+	weight = "Regular",
+	harfbuzz_features = { "calt=1", "clig=1", "liga=1" },
+})
+config.font_size = 16.0
 config.window_padding = {
 	left = 10,
 	right = 10,
@@ -44,14 +48,6 @@ config.keys = {}
 local act = wezterm.action
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
-	-- copy to clipboard
-	{ key = "c", mods = "CTRL|CMD", action = act.CopyTo("ClipboardAndPrimarySelection") },
-	-- paste from the clipboard
-	{ key = "v", mods = "CTRL|CMD", action = act.PasteFrom("Clipboard") },
-
-	-- paste from the primary selection
-	{ key = "v", mods = "CTRL|CMD", action = act.PasteFrom("PrimarySelection") },
-
 	-- Just make macOS behaves a bit like Linux
 	{
 		key = "b",
