@@ -7,12 +7,12 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_domain = "WSL:Ubuntu"
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	-- Set background blur if the OS is macOS
-	config.macos_window_background_blur = 05
+	config.macos_window_background_blur = 2.5
 end
 
 -- Custom config
 config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = 0.75
+config.window_background_opacity = 0.85
 
 -- Get builtin color_scheme
 local tokyo_night = wezterm.color.get_builtin_schemes()["Tokyo Night"]
@@ -45,7 +45,6 @@ config.window_decorations = "RESIZE"
 config.keys = {}
 
 -- Config CTRL-c and CTRL-v
-local act = wezterm.action
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	-- Just make macOS behaves a bit like Linux
