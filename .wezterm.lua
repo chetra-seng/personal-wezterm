@@ -76,4 +76,6 @@ config.keys = {
 	},
 }
 
+config.enable_kitty_graphics = true
+
 return config
