@@ -47,18 +47,6 @@ config.keys = {}
 -- Config CTRL-c and CTRL-v
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
-	-- Just make macOS behaves a bit like Linux
-	{
-		key = "b",
-		mods = "CMD",
-		action = wezterm.action({ SendString = "\x1bb" }),
-	},
-	{
-		key = "f",
-		mods = "CMD",
-		action = wezterm.action({ SendString = "\x1bf" }),
-	},
-
 	{
 		key = "|",
 		mods = "LEADER",
