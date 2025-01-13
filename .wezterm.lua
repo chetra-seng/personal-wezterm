@@ -7,12 +7,12 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_domain = "WSL:Ubuntu"
 elseif wezterm.target_triple == "aarch64-apple-darwin" then
 	-- Set background blur if the OS is macOS
-	config.macos_window_background_blur = 5
+	config.macos_window_background_blur = 25
 end
 
 -- Custom config
 config.window_close_confirmation = "NeverPrompt"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.75
 
 -- Get builtin color_scheme
 local tokyo_night = wezterm.color.get_builtin_schemes()["Tokyo Night"]
